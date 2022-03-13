@@ -4,7 +4,7 @@ Vegetable/Fruits Ordering System, Using "Ogani | Template Bootstrap 4"  and "Cor
 VegeFruitas Ordering System
   - Practice & Learning System.
 
-Steps Process.
+Setup Processes & Web pages
   
 1. setup Githup repo  
 2. Installation Laravel, 	
@@ -16,11 +16,12 @@ Steps Process.
 8. Admin Product        - Add/Edit/View 	 		
 9. Admin Blog           - Add/Edit/View 	 		
 10. Admin Contact Us    - Add/Edit/View 	 
-11. Home						
-12. Product List View 			
-13. Product Details 			
-14. Shopping Cart 					
-15. Wishlist Checkout 		 
-16. Blog list 				
-17. Blog Details 			
-18. Contact Us 				
+11. Home Page					
+12. Product List Page View 			
+13. Product Details Page			
+14. Shopping Cart Page 					
+15. Wishlist Page
+16. Checkout Page 
+17. Blog list Page 				
+18. Blog Details Page 			
+19. Contact Us Page 				
