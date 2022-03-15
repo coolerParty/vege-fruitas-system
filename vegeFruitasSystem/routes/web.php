@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Livewire\HomeComponent;
+
+use App\Http\Livewire\admin\AdminDashboardComponent;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,10 +17,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+// // Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+// //     return view('dashboard');
+// // })->name('dashboard');
+
+// for guest
+Route::get('/',HomeComponent::class)->name('home');
+
+// For Admin
+Route::middleware(['auth:sanctum','verified','authadmin'])->group(function(){
+    Route::get('/admin/dashboard',AdminDashboardComponent::class)->name('admin.dashboard');			
+});
