@@ -59,7 +59,7 @@
 		</div>
 		<nav class="humberger__menu__nav mobile-menu">
 			<ul>
-				<li class="active"><a href="./index.html">Home</a></li>
+				<li class="active"><a href="/">Home</a></li>
 				<li><a href="./shop-grid.html">Shop</a></li>
 				<li><a href="#">Pages</a>
 					<ul class="header__menu__dropdown">
@@ -111,7 +111,7 @@
 								<a href="#"><i class="fa fa-pinterest-p"></i></a>
 							</div>
 							<div class="header__top__right__language">
-								<img src="img/language.png" alt="">
+								<img src="{{ asset('assets/img/language.png') }}" alt="">
 								<div>English</div>
 								<span class="arrow_carrot-down"></span>
 								<ul>
@@ -135,6 +135,7 @@
 											<span class="arrow_carrot-down"></span>
 											<ul>
 												<li><a href="#">Dashboard</a></li>
+												<li><a href="{{ route('user.changepassword') }}">Password</a></li>
 											</ul>
 										</div>
 									@endif
@@ -150,6 +151,9 @@
 									<div class="header__top__right__auth">
 										<a href="{{ route('login') }}"><i class="fa fa-user"></i> Login</a>
 									</div>
+									<div class="pl-3 ml-3 border-left header__top__right__auth">
+										<a href="{{ route('register') }}"><i class="fa fa-user"></i> Register</a>
+									</div>
 								@endif
 								@endif
 							</div>
@@ -161,13 +165,13 @@
 				<div class="row">
 					<div class="col-lg-3">
 						<div class="header__logo">
-							<a href="./index.html"><img src="img/logo.png" alt=""></a>
+							<a href="/"><img src="{{ asset('assets/img/logo.png') }}" alt=""></a>
 						</div>
 					</div>
 					<div class="col-lg-6">
 						<nav class="header__menu">
 							<ul>
-								<li class="active"><a href="./index.html">Home</a></li>
+								<li @if (url()->current() == route('home')) class="active" @endif><a href="/">Home</a></li>
 								<li><a href="./shop-grid.html">Shop</a></li>
 								<li><a href="#">Pages</a>
 									<ul class="header__menu__dropdown">
@@ -200,7 +204,7 @@
 		<!-- Header Section End -->
 
 		<!-- Hero Section Begin -->
-		<section class="hero">
+		<section class="hero @if (url()->current() != route('home')) hero-normal @endif">
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-3">
@@ -246,14 +250,17 @@
 								</div>
 							</div>
 						</div>
-						<div class="hero__item set-bg" data-setbg="{{ asset('assets/img/hero/banner.jpg') }}">
-							<div class="hero__text">
-								<span>FRUIT FRESH</span>
-								<h2>Vegetable <br />100% Organic</h2>
-								<p>Free Pickup and Delivery Available</p>
-								<a href="#" class="primary-btn">SHOP NOW</a>
+						@if (url()->current() == route('home'))
+							<div class="hero__item set-bg" data-setbg="{{ asset('assets/img/hero/banner.jpg') }}">
+								<div class="hero__text">
+									<span>FRUIT FRESH</span>
+									<h2>Vegetable <br />100% Organic</h2>
+									<p>Free Pickup and Delivery Available</p>
+									<a href="#" class="primary-btn">SHOP NOW</a>
+								</div>
 							</div>
-						</div>
+						@endif
+
 					</div>
 				</div>
 			</div>
@@ -269,7 +276,7 @@
 					<div class="col-lg-3 col-md-6 col-sm-6">
 						<div class="footer__about">
 							<div class="footer__about__logo">
-								<a href="./index.html"><img src="img/logo.png" alt=""></a>
+								<a href="/"><img src="{{ asset('assets/img/logo.png') }}" alt=""></a>
 							</div>
 							<ul>
 								<li>Address: 60-49 Road 11378 New York</li>
