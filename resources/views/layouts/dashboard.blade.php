@@ -89,11 +89,19 @@
 					<span class="nav-link">Navigation</span>
 				</li>
 				<li class="nav-item menu-items">
-					<a class="nav-link" href="index.html">
+					<a class="nav-link" href="{{ route('admin.dashboard') }}">
 						<span class="menu-icon">
 							<i class="mdi mdi-speedometer"></i>
 						</span>
 						<span class="menu-title">Dashboard</span>
+					</a>
+				</li>
+				<li class="nav-item menu-items">
+					<a class="nav-link" href="{{ route('admin.userlist') }}">
+						<span class="menu-icon">
+							<i class="mdi mdi-account-multiple"></i>
+						</span>
+						<span class="menu-title">Users List</span>
 					</a>
 				</li>
 				<li class="nav-item menu-items">
@@ -350,17 +358,7 @@
 								@if (Route::has('login'))
 									@auth
 										@if (Auth::user()->utype === 'ADM')
-											<div class="dropdown-divider"></div>
-											<a href="{{ route('admin.dashboard') }}" class="dropdown-item preview-item">
-												<div class="preview-thumbnail">
-													<div class="preview-icon bg-dark rounded-circle">
-														<i class="mdi mdi-settings text-success"></i>
-													</div>
-												</div>
-												<div class="preview-item-content">
-													<p class="preview-subject mb-1">Dashboard</p>
-												</div>
-											</a>
+											
 											<div class="dropdown-divider"></div>
 											<a class="dropdown-item preview-item">
 												<div class="preview-thumbnail">

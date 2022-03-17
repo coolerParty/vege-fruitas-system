@@ -8,6 +8,7 @@ use App\Http\Livewire\user\UserChangePasswordComponent;
 
 use App\Http\Livewire\admin\AdminDashboardComponent;
 use App\Http\Livewire\admin\AdminChangePasswordComponent;
+use App\Http\Livewire\admin\AdminUserListComponent;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +39,9 @@ Route::middleware(['auth:sanctum','verified'])->group(function(){
 
 // For Admin
 Route::middleware(['auth:sanctum','verified','authadmin'])->group(function(){
+
     Route::get('/admin/dashboard',AdminDashboardComponent::class)->name('admin.dashboard');	
-    Route::get('/admin/change-password',AdminChangePasswordComponent::class)->name('admin.changepassword');		
+    Route::get('/admin/change-password',AdminChangePasswordComponent::class)->name('admin.changepassword');	
+    Route::get('/admin/user-list',AdminUserListComponent::class)->name('admin.userlist');	
+    	
 });
