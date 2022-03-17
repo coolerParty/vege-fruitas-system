@@ -10,6 +10,10 @@ use App\Http\Livewire\admin\AdminDashboardComponent;
 use App\Http\Livewire\admin\AdminChangePasswordComponent;
 use App\Http\Livewire\admin\AdminUserListComponent;
 
+use App\Http\Livewire\admin\AdminCategoryComponent;
+use App\Http\Livewire\admin\AdminCategoryAddComponent;
+use App\Http\Livewire\admin\AdminCategoryEditComponent;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -44,4 +48,8 @@ Route::middleware(['auth:sanctum','verified','authadmin'])->group(function(){
     Route::get('/admin/change-password',AdminChangePasswordComponent::class)->name('admin.changepassword');	
     Route::get('/admin/user-list',AdminUserListComponent::class)->name('admin.userlist');	
     	
+    Route::get('/admin/category',AdminCategoryComponent::class)->name('admin.category');	
+    Route::get('/admin/category/add',AdminCategoryAddComponent::class)->name('admin.categoryadd');	
+    Route::get('/admin/category/edit/{category_id}',AdminCategoryEditComponent::class)->name('admin.categoryedit');	
+
 });

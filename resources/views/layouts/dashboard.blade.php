@@ -5,7 +5,7 @@
 	<!-- Required meta tags -->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title>Corona Admin</title>
+	<title>@yield('title')</title>
 	<!-- plugins:css -->
 	<link rel="stylesheet" href="{{ asset('assets/admin/vendors/mdi/css/materialdesignicons.min.css') }}">
 	<link rel="stylesheet" href="{{ asset('assets/admin/vendors/css/vendor.bundle.base.css') }}">
@@ -107,16 +107,15 @@
 				<li class="nav-item menu-items">
 					<a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
 						<span class="menu-icon">
-							<i class="mdi mdi-laptop"></i>
+							<i class="mdi mdi-assistant"></i>
 						</span>
-						<span class="menu-title">Basic UI Elements</span>
+						<span class="menu-title">Entries</span>
 						<i class="menu-arrow"></i>
 					</a>
 					<div class="collapse" id="ui-basic">
 						<ul class="nav flex-column sub-menu">
-							<li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a></li>
-							<li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">Dropdowns</a></li>
-							<li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a>
+							<li class="nav-item"> <a class="nav-link" href="{{ route('admin.category') }}">Category</a></li>
+							<li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">Products</a></li>
 							</li>
 						</ul>
 					</div>

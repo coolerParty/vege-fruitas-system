@@ -1,4 +1,5 @@
 <div>
+	@section('title', 'Admin | Users List')
 	<div class="content-wrapper">
 		<div class="page-header">
 			<h3 class="page-title">Users List</h3>

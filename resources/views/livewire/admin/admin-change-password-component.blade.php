@@ -1,4 +1,5 @@
 <div>
+	@section('title', 'Admin | Change Password')
 	<div class="content-wrapper">
 		<div class="page-header">
 			<h3 class="page-title"> Change Password </h3>
