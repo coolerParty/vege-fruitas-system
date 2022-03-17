@@ -15,7 +15,7 @@
 				<div class="card">
 					<div class="card-body">
 						<div class="row d-flex justify-content-between">
-							<h4 class="card-title">Users List</h4>
+							<h4 class="card-title">Category</h4>
 							<p><a href="{{ route('admin.categoryadd') }}" class="btn btn-inverse-success">Add Category</a></p>
 						</div>
 						{{-- <p class="card-description"> Add class <code>.table-bordered</code></p> --}}
@@ -55,7 +55,7 @@
 											<td>
 												<div class="dropdown">
 													<button
-														class="@if ($category->status == 0) btn btn-inverse-secondary @else btn btn-inverse-success @endif dropdown-toggle"
+														class="@if ($category->status == 0) btn btn-dark @else btn btn-inverse-success @endif dropdown-toggle"
 														type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 														{{ $category->status == 1 ? 'Active' : 'Inactive' }} </button>
 													<div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -73,7 +73,7 @@
 											<td><a href="{{ route('admin.categoryedit', ['category_id' => $category->id]) }}"
 													class="btn btn-inverse-success btn-sm">Edit</a>
 												<a href="#" class="btn btn-inverse-danger btn-sm"
-													onclick="confirm('Are you sure, You want to delete this barangay?') || event.stopImmediatePropagation()"
+													onclick="confirm('Are you sure, You want to delete this category?') || event.stopImmediatePropagation()"
 													wire:click.prevent="deleteCategory({{ $category->id }})">Delete</a>
 											</td>
 										</tr>

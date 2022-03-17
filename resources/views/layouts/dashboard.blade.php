@@ -115,7 +115,7 @@
 					<div class="collapse" id="ui-basic">
 						<ul class="nav flex-column sub-menu">
 							<li class="nav-item"> <a class="nav-link" href="{{ route('admin.category') }}">Category</a></li>
-							<li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">Products</a></li>
+							<li class="nav-item"> <a class="nav-link" href="{{ route('admin.product') }}">Product</a></li>
 							</li>
 						</ul>
 					</div>
