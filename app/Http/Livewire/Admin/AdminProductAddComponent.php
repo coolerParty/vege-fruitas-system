@@ -52,8 +52,8 @@ class AdminProductAddComponent extends Component
             'stock_status'      => ['required'],
             'quantity'          => ['required','numeric'],
             'weight'            => ['required','numeric'],
-            'image'             => ['required','image','mimes:jpeg,jpg,png','max:2054'],
-            'images.*'          => ['image','mimes:jpeg,jpg,png','max:2054'],   // 2MB Max
+            'image'             => ['required','image','max:2054'],
+            'images.*'          => ['image','max:2054'],   // 2MB Max
             'category_id'       => ['required'],
         ]);
     }
@@ -71,8 +71,8 @@ class AdminProductAddComponent extends Component
                 'stock_status'      => ['required'],
                 'quantity'          => ['required','numeric'],
                 'weight'            => ['required','numeric'],
-                'image'             => ['required','image','mimes:jpeg,jpg,png','max:2054'],
-                'images.*'          => ['image','mimes:jpeg,jpg,png','max:2054'],   // 2MB Max
+                'image'             => ['required','image','max:2054'],
+                'images.*'          => ['image','max:2054'],   // 2MB Max
                 'category_id'       => ['required'],
         ]);
 
@@ -92,9 +92,9 @@ class AdminProductAddComponent extends Component
         if(!empty($this->image))
         {
             $imagename      = 'ci'.Carbon::now()->timestamp. '.' . $this->image->extension();
-            $pathProductSmall  = storage_path().'/app/public/product_small/';
-            $pathProductMedium  = storage_path().'/app/public/product_medium/';
-            $pathProductLarge   = storage_path().'/app/public/product_large/';
+            $pathProductSmall  = storage_path().'/app/public/product/small/';
+            $pathProductMedium  = storage_path().'/app/public/product/medium/';
+            $pathProductLarge   = storage_path().'/app/public/product/large/';
             $thumbnailImage = Image::make($this->image);
             $thumbnailImage->fit(336, 348);
             $thumbnailImage->save($pathProductLarge.$imagename);
@@ -112,7 +112,7 @@ class AdminProductAddComponent extends Component
             {                
                 $imgName = Carbon::now()->timestamp. $key. '.' . $image->extension();
                 // $image->storeAs('products',$imgName);
-                $imagePath = storage_path().'/app/public/product_large/';
+                $imagePath = storage_path().'/app/public/product/large/';
                 $postImage = Image::make($image);
                 
                 // resize the image to a width of 860 and constrain aspect ratio (auto height)

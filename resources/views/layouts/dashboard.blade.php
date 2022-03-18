@@ -116,7 +116,6 @@
 						<ul class="nav flex-column sub-menu">
 							<li class="nav-item"> <a class="nav-link" href="{{ route('admin.category') }}">Category</a></li>
 							<li class="nav-item"> <a class="nav-link" href="{{ route('admin.product') }}">Product</a></li>
-							</li>
 						</ul>
 					</div>
 				</li>

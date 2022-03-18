@@ -29,19 +29,19 @@ class AdminProductComponent extends Component
         $this->name = $product->name;
         if(!empty($product->image))
         {
-            if (file_exists('storage/product_small'.'/'.$product->image))
+            if (file_exists('storage/product/small'.'/'.$product->image))
             {
-                unlink('storage/product_small'.'/'.$product->image);
+                unlink('storage/product/small'.'/'.$product->image);
             }
              
-            if (file_exists('storage/product_medium'.'/'.$product->image))
+            if (file_exists('storage/product/medium'.'/'.$product->image))
             {
-                unlink('storage/product_medium'.'/'.$product->image);
+                unlink('storage/product/medium'.'/'.$product->image);
             }
 
-            if (file_exists('storage/product_large'.'/'.$product->image))
+            if (file_exists('storage/product/large'.'/'.$product->image))
             {
-                unlink('storage/product_large'.'/'.$product->image);
+                unlink('storage/product/large'.'/'.$product->image);
             }
         }
         $product->delete();
@@ -72,14 +72,14 @@ class AdminProductComponent extends Component
         { 
             $products = Product::where('name','like','%'. $this->searchname .'%')
             ->select('id','name','stock_status','featured','quantity','image','category_id','created_at')
-            ->orderby('created_at','DESC')->with('category')
+            ->orderby('created_at','DESC')
             ->paginate($this->PAGE_NUMBER_LIMIT);
             $products->withPath(route('admin.product').'?searchname='.$this->searchname);
         }
         else
         {
             $products = Product::select('id','name','stock_status','featured','quantity','image','category_id','created_at')
-            ->orderby('created_at','DESC')->with('category')
+            ->orderby('created_at','DESC')
             ->paginate($this->PAGE_NUMBER_LIMIT);
         }
 

@@ -40,7 +40,7 @@
 							</div>
 							<div class="form-group">
 								<label for="short_description">Short Description</label>
-								<textarea class="form-control @error('short_description') is-invalid @enderror" id="short_description" rows="4"
+								<textarea class="form-control bg-secondary text-dark @error('short_description') is-invalid @enderror" id="short_description" rows="4"
          wire:model="short_description"></textarea>
 								@error('short_description')
 									<p class="text-danger">{{ $message }}</p>

@@ -1007,6 +1007,9 @@ select {
 .float-none {
   float: none;
 }
+.m-1 {
+  margin: 0.25rem;
+}
 .m-0 {
   margin: 0px;
 }
@@ -1465,11 +1468,11 @@ select {
 .p-6 {
   padding: 1.5rem;
 }
-.p-0 {
-  padding: 0px;
-}
 .p-1 {
   padding: 0.25rem;
+}
+.p-0 {
+  padding: 0px;
 }
 .p-3 {
   padding: 0.75rem;

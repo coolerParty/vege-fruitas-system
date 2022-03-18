@@ -97,12 +97,12 @@ class AdminProductEditComponent extends Component
 
         if($this->newimage)
         {
-            $this->validateOnly($fields,['newimage' => ['required','image','mimes:jpeg,jpg,png','max:2054']]);
+            $this->validateOnly($fields,['newimage' => ['required','image','max:2054']]);
         }
 
         if($this->newimages)
         {
-            $this->validateOnly($fields,['newimages.*' => ['image','mimes:jpeg,jpg,png','max:2054']]);
+            $this->validateOnly($fields,['newimages.*' => ['image','max:2054']]);
         }
 
     }
@@ -127,12 +127,12 @@ class AdminProductEditComponent extends Component
 
        if($this->newimage)
         {
-            $this->validate(['newimage' => ['required','image','mimes:jpeg,jpg,png','max:2054']]);
+            $this->validate(['newimage' => ['required','image','max:2054']]);
         }
 
         if($this->newimages)
         {
-            $this->validate(['newimages.*' => ['image','mimes:jpeg,jpg,png','max:2054']]);
+            $this->validate(['newimages.*' => ['image','max:2054']]);
         }
 
         $product                    = Product::find($this->product_id);
@@ -152,23 +152,23 @@ class AdminProductEditComponent extends Component
         if(!empty($this->newimage))
         {
             
-            if (!empty($product->image) && file_exists('storage/product_small'.'/'.$product->image))
+            if (!empty($product->image) && file_exists('storage/product/small'.'/'.$product->image))
             {
-                unlink('storage/product_small'.'/'.$product->image); // Deleting Image
+                unlink('storage/product/small'.'/'.$product->image); // Deleting Image
             }
-            if (!empty($product->image) && file_exists('storage/product_medium'.'/'.$product->image))
+            if (!empty($product->image) && file_exists('storage/product/medium'.'/'.$product->image))
             {
-                unlink('storage/product_medium'.'/'.$product->image); // Deleting Image
+                unlink('storage/product/medium'.'/'.$product->image); // Deleting Image
             }
-            if (!empty($product->image) && file_exists('storage/product_large'.'/'.$product->image))
+            if (!empty($product->image) && file_exists('storage/product/large'.'/'.$product->image))
             {
-                unlink('storage/product_large'.'/'.$product->image); // Deleting Image
+                unlink('storage/product/large'.'/'.$product->image); // Deleting Image
             }
 
             $imagename         = 'ci'.Carbon::now()->timestamp. '.' . $this->newimage->extension();
-            $pathProductSmall  = storage_path().'/app/public/product_small/';
-            $pathProductMedium = storage_path().'/app/public/product_medium/';
-            $pathProductLarge  = storage_path().'/app/public/product_large/';
+            $pathProductSmall  = storage_path().'/app/public/product/small/';
+            $pathProductMedium = storage_path().'/app/public/product/medium/';
+            $pathProductLarge  = storage_path().'/app/public/product/large/';
             $thumbnailImage = Image::make($this->newimage);
 
             $thumbnailImage->fit(336, 348);
@@ -190,9 +190,9 @@ class AdminProductEditComponent extends Component
                 $images = explode(",",$product->images);
                 foreach($images as $image)
                 {
-                    if (!empty($image) && file_exists('storage/product_large'.'/'.$image))  
+                    if (!empty($image) && file_exists('storage/product/large'.'/'.$image))  
                     {
-                        unlink('storage/product_large'.'/'.$image);
+                        unlink('storage/product/large'.'/'.$image);
                     }
                 }
             }
@@ -201,7 +201,7 @@ class AdminProductEditComponent extends Component
             foreach($this->newimages as $key=>$image)
             {
                 $imgName   = Carbon::now()->timestamp . $key . '.' . $image->extension();
-                $imagePath = storage_path().'/app/public/product_large/';
+                $imagePath = storage_path().'/app/public/product/large/';
                 $productImage = Image::make($image);
                 
                 // resize the image to a width of 860 and constrain aspect ratio (auto height)

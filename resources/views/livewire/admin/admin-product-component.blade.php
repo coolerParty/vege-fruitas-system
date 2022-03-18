@@ -55,7 +55,7 @@
 									@foreach ($products as $product)
 										<tr>
 											<td>{{ $loop->iteration }}</td>
-											<td><img src="{{ asset('storage/product_small') }}/{{ $product->image }}" alt=""></td>
+											<td><img src="{{ asset('storage/product/small') }}/{{ $product->image }}" alt=""></td>
 											<td>{{ $product->name }}</td>
 											<td>
 												<div class="dropdown">

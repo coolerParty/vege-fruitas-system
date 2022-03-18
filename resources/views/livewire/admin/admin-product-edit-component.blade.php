@@ -38,7 +38,7 @@
 							</div>
 							<div class="form-group">
 								<label for="short_description">Short Description</label>
-								<textarea class="form-control @error('short_description') is-invalid @enderror" id="short_description" rows="8"
+								<textarea class="form-control bg-secondary text-dark @error('short_description') is-invalid @enderror" id="short_description" rows="8"
          wire:model="short_description"></textarea>
 								@error('short_description')
 									<p class="text-danger">{{ $message }}</p>
@@ -155,7 +155,7 @@
 								@if ($image)
 									<div>Current Image</div>
 									<div class="mt-1 p-1 border">
-										<img src="{{ asset('storage/product_small') }}/{{ $image }}" alt="">
+										<img src="{{ asset('storage/product/small') }}/{{ $image }}" alt="">
 									</div>
 								@endif
 							</div>
@@ -192,7 +192,7 @@
 									<div class="mt-1 p-1 border">
 										@foreach ($images as $img)
 											@if ($img)
-												<img src="{{ asset('storage/product_large') }}/{{ $img }}" alt="" width="120">
+												<img src="{{ asset('storage/product/large') }}/{{ $img }}" alt="" width="120">
 											@endif
 										@endforeach
 									</div>
