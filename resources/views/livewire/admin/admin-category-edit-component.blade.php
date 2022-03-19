@@ -45,11 +45,57 @@
 								@enderror
 							</div>
 							<div class="form-group">
+								<label for="type">Type</label>
+								<select class="form-control" id="type" wire:model="type">
+									<option value="" @if($type == null) Selected @endif>Select Type</option>
+									<option value="1" @if($type == '1') Selected @endif>Product</option>
+									<option value="2" @if($type == '2') Selected @endif>Blog</option>
+								</select>
+								@error('type')
+									<div class="invalid-feedback">{{ $message }}</div>
+								@enderror
+							</div>
+							<div class="form-group">
+								<label>Cover Image</label>
+								<div class="input-group">
+									<input type="file" name="image"
+										class="form-control btn btn-primary p-2 @error('newimage') is-invalid @enderror" wire:model="newimage"
+										placeholder="Upload Image" aria-describedby="button-image">
+									@if ($newimage)
+										<button class="btn btn-danger" type="button" id="button-image" wire:click="removeImage">Remove</button>
+									@endif
+									@error('newimage')
+										<p class="text-danger">{{ $message }}</p>
+									@enderror
+								</div>
+								<div class="mt-1 mb-1 p-1 border">
+									<div class="alert alert-danger m-1" style="width: 100%;" wire:loading wire:target="newimage">
+										Uploading...
+									</div>
+									<ul>
+										@if ($newimage)
+											<li>{{ $newimage->getClientOriginalName() }}</li>
+										@else
+											<li>No Image Selected</li>
+										@endif
+									</ul>
+								</div>
+								@if ($image)
+									<div>Current Image</div>
+									<div class="mt-1 p-1 border">
+										<img src="{{ asset('storage/category/medium') }}/{{ $image }}" alt="">
+									</div>
+								@endif
+							</div>
+							<div class="form-group">
 								<label for="exampleSelectStatus">Status</label>
 								<select class="form-control" id="exampleSelectStatus" wire:model="status">
 									<option value="0">Inactive</option>
 									<option value="1">Active</option>
 								</select>
+								@error('status')
+									<div class="invalid-feedback">{{ $message }}</div>
+								@enderror
 							</div>
 							<button type="submit" class="btn btn-primary mr-2">Update</button>
 							{{-- <button class="btn btn-dark">Cancel</button> --}}

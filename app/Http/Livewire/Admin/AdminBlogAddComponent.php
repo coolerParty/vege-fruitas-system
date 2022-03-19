@@ -99,7 +99,7 @@ class AdminBlogAddComponent extends Component
 
     public function render()
     {
-        $categories = Category::select('id','name')->orderby('name','ASC')->get();
+        $categories = Category::select('id','name')->orderby('name','ASC')->where('status',1)->where('type',2)->get();
         return view('livewire.admin.admin-blog-add-component',['categories'=>$categories])->layout('layouts.dashboard');
     }
 }

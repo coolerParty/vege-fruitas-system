@@ -153,7 +153,7 @@ class AdminProductAddComponent extends Component
 
     public function render()
     {
-        $categories = Category::select('id','name')->orderby('name','ASC')->get();
+        $categories = Category::select('id','name')->orderby('name','ASC')->where('status',1)->where('type',1)->get();
         return view('livewire.admin.admin-product-add-component',['categories'=>$categories])->layout('layouts.dashboard');
     }
 }

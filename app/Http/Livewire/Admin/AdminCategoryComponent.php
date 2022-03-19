@@ -27,6 +27,14 @@ class AdminCategoryComponent extends Component
     {   
         $category = Category::find($category_id);
         $this->name = $category->name;
+        if(!empty($category->image))
+        {
+             
+            if (file_exists('storage/category/medium'.'/'.$category->image))
+            {
+                unlink('storage/category/medium'.'/'.$category->image);
+            }
+        }
         $category->delete();
         session()->flash('message',$this->name.' has been deleted successfully');
         $this->name = null;
@@ -45,14 +53,14 @@ class AdminCategoryComponent extends Component
         if(!empty($this->searchname))
         { 
             $categories = Category::where('name','like','%'. $this->searchname .'%')
-            ->select('id','name','status','created_at')
+            ->select('id','name','status','type','image','created_at')
             ->orderby('created_at','DESC')
             ->paginate($this->PAGE_NUMBER_LIMIT);
             $categories->withPath(route('admin.category').'?searchname='.$this->searchname);
         }
         else
         {
-            $categories = Category::select('id','name','status','created_at')->orderby('created_at','DESC')->paginate($this->PAGE_NUMBER_LIMIT);
+            $categories = Category::select('id','name','status','type','image','created_at')->orderby('created_at','DESC')->paginate($this->PAGE_NUMBER_LIMIT);
         }
         
         return view('livewire.admin.admin-category-component',['categories'=>$categories])->layout('layouts.dashboard');

@@ -24,7 +24,9 @@
 								<thead>
 									<tr>
 										<th> # </th>
+										<th> Image </th>
 										<th> Name </th>
+										<th> Type </th>
 										<th> Status </th>
 										<th> Date Created </th>
 										<th class="col-sm-2"> Action </th>
@@ -38,9 +40,9 @@
 									<form class="row p-1" action="{{ route('admin.category') }}">
 										<div class="form-group">
 											<div class="input-group">
-												<input class="form-control" placeholder="Search category name"
-													aria-label="Search category name" aria-describedby="basic-addon2" id="searchname" name="searchname" type="search"
-                                                    value="{{ $searchname }}">
+												<input class="form-control" placeholder="Search category name" aria-label="Search category name"
+													aria-describedby="basic-addon2" id="searchname" name="searchname" type="search"
+													value="{{ $searchname }}">
 												<div class="input-group-append">
 													<button class="btn btn-sm btn-primary" type="submit">Search</button>
 												</div>
@@ -51,7 +53,19 @@
 									@foreach ($categories as $category)
 										<tr>
 											<td>{{ $loop->iteration }}</td>
+											<td>
+												@if ($category->image)
+													<img src="{{ asset('storage/category/medium') }}/{{ $category->image }}" alt="">
+												@endif
+											</td>
 											<td>{{ $category->name }}</td>
+											<td>
+												@if ($category->type == 1)
+													Product
+												@elseif ($category->type == 2)
+													Blog
+												@endif
+											</td>
 											<td>
 												<div class="dropdown">
 													<button
