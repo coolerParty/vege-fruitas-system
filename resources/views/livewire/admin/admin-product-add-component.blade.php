@@ -15,7 +15,7 @@
 			<div class="col-12 grid-margin stretch-card">
 				<div class="card">
 					<div class="card-body">
-                        <div class="row d-flex justify-content-between">
+						<div class="row d-flex justify-content-between">
 							<h4 class="card-title">Product Add</h4>
 							<p><a href="{{ route('admin.product') }}" class="btn btn-inverse-info">Back to Products</a></p>
 						</div>
@@ -38,15 +38,15 @@
 									<p class="text-danger">{{ $message }}</p>
 								@enderror
 							</div>
-							<div class="form-group">
+							<div class="form-group" wire:ignore>
 								<label for="short_description">Short Description</label>
-								<textarea class="form-control bg-secondary text-dark @error('short_description') is-invalid @enderror" id="short_description" rows="4"
-         wire:model="short_description"></textarea>
+								<textarea class="form-control bg-secondary text-dark @error('short_description') is-invalid @enderror"
+         id="short_description" rows="4" wire:model="short_description"></textarea>
 								@error('short_description')
 									<p class="text-danger">{{ $message }}</p>
 								@enderror
 							</div>
-							<div class="form-group">
+							<div class="form-group" wire:ignore>
 								<label for="description">Description</label>
 								<textarea class="form-control @error('description') is-invalid @enderror" id="description" rows="4"
          wire:model="description"></textarea>
@@ -54,7 +54,7 @@
 									<p class="text-danger">{{ $message }}</p>
 								@enderror
 							</div>
-							<div class="form-group">
+							<div class="form-group" wire:ignore>
 								<label for="information">Information</label>
 								<textarea class="form-control @error('information') is-invalid @enderror" id="information" rows="4"
          wire:model="information"></textarea>
@@ -133,12 +133,12 @@
 								<label>Cover Image</label>
 								{{-- <input type="file" name="image" class="file-upload-default" wire:model="image"> --}}
 								<div class="input-group">
-									<input type="file" name="image" class="form-control btn btn-primary p-2 @error('image') is-invalid @enderror" wire:model="image"
-										placeholder="Upload Image" aria-describedby="button-image">
+									<input type="file" name="image" class="form-control btn btn-primary p-2 @error('image') is-invalid @enderror"
+										wire:model="image" placeholder="Upload Image" aria-describedby="button-image">
 									@if ($image)
 										<button class="btn btn-danger" type="button" id="button-image" wire:click="removeCover">Remove</button>
 									@endif
-                                    @error('image')
+									@error('image')
 										<p class="text-danger">{{ $message }}</p>
 									@enderror
 									{{-- <input type="text" class="form-control file-upload-info @error('image') is-invalid @enderror" disabled
@@ -146,14 +146,14 @@
 									{{-- <span class="input-group-append">
 										<button class="file-upload-browse btn btn-primary" type="button">Upload</button>
 									</span> --}}
-									
-									
+
+
 								</div>
-                                <div class="mt-1 p-1 border">
+								<div class="mt-1 p-1 border">
 									<div class="alert alert-danger m-1" style="width: 100%;" wire:loading wire:target="image">
 										Uploading...
 									</div>
-                                    <ul>
+									<ul>
 										@if ($image)
 											<li>{{ $image->getClientOriginalName() }}</li>
 
@@ -162,15 +162,16 @@
 											<li>No Image Selected</li>
 										@endif
 									</ul>
-                                </div>
+								</div>
 							</div>
 
 							<div class="form-group">
 								<label>Images</label>
 								{{-- <input type="file" name="image" class="file-upload-default" wire:model="image"> --}}
 								<div class="input-group">
-									<input type="file" name="image" class="form-control btn btn-primary p-2 @error('images.*') is-invalid @enderror"
-										wire:model="images" multiple aria-describedby="button-images">
+									<input type="file" name="image"
+										class="form-control btn btn-primary p-2 @error('images.*') is-invalid @enderror" wire:model="images" multiple
+										aria-describedby="button-images">
 									{{-- <input type="text" class="form-control file-upload-info @error('image') is-invalid @enderror" disabled
 										placeholder="Upload Image"> --}}
 									{{-- <span class="input-group-append">
@@ -210,3 +211,42 @@
 	</div>
 	<!-- content-wrapper ends -->
 </div>
+@push('scripts')
+	<script>
+	 $(function() {
+	  tinymce.init({
+	   selector: '#short_description',
+	   setup: function(editor) {
+	    editor.on('Change', function(e) {
+	     tinyMCE.triggerSave();
+	     var sd_data = $('#short_description').val();
+	     @this.set('short_description', sd_data);
+	    })
+	   }
+	  });
+
+	  tinymce.init({
+	   selector: '#description',
+	   setup: function(editor) {
+	    editor.on('Change', function(e) {
+	     tinyMCE.triggerSave();
+	     var d_data = $('#description').val();
+	     @this.set('description', d_data);
+	    })
+	   }
+	  });
+
+	  tinymce.init({
+	   selector: '#information',
+	   setup: function(editor) {
+	    editor.on('Change', function(e) {
+	     tinyMCE.triggerSave();
+	     var d_data = $('#information').val();
+	     @this.set('information', d_data);
+	    })
+	   }
+	  });
+
+	 });
+	</script>
+@endpush

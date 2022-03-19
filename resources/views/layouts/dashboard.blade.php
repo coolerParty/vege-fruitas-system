@@ -22,6 +22,8 @@
 	<link rel="stylesheet" href="{{ asset('assets/admin/css/style.css') }}">
 	<!-- End layout styles -->
 	<link rel="shortcut icon" href="{{ asset('assets/admin/images/favicon.png') }}" />
+
+	<script src="https://cdn.tiny.cloud/1/titz4ckhqw932u1vyzq8h8vclq1w1ktdcf51mjftxeebmo3p/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 	@livewireStyles
 </head>
 
@@ -116,6 +118,7 @@
 						<ul class="nav flex-column sub-menu">
 							<li class="nav-item"> <a class="nav-link" href="{{ route('admin.category') }}">Category</a></li>
 							<li class="nav-item"> <a class="nav-link" href="{{ route('admin.product') }}">Product</a></li>
+							<li class="nav-item"> <a class="nav-link" href="{{ route('admin.blog') }}">Blog</a></li>
 						</ul>
 					</div>
 				</li>

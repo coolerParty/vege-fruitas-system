@@ -36,7 +36,7 @@
 									<p class="text-danger">{{ $message }}</p>
 								@enderror
 							</div>
-							<div class="form-group">
+							<div class="form-group" wire:ignore>
 								<label for="short_description">Short Description</label>
 								<textarea class="form-control bg-secondary text-dark @error('short_description') is-invalid @enderror" id="short_description" rows="8"
          wire:model="short_description"></textarea>
@@ -44,7 +44,7 @@
 									<p class="text-danger">{{ $message }}</p>
 								@enderror
 							</div>
-							<div class="form-group">
+							<div class="form-group" wire:ignore>
 								<label for="description">Description</label>
 								<textarea class="form-control @error('description') is-invalid @enderror" id="description" rows="8"
          wire:model="description"></textarea>
@@ -52,7 +52,7 @@
 									<p class="text-danger">{{ $message }}</p>
 								@enderror
 							</div>
-							<div class="form-group">
+							<div class="form-group" wire:ignore>
 								<label for="information">Information</label>
 								<textarea class="form-control @error('information') is-invalid @enderror" id="information" rows="8"
          wire:model="information"></textarea>
@@ -209,3 +209,42 @@
 	</div>
 	<!-- content-wrapper ends -->
 </div>
+@push('scripts')
+<script>
+	$(function() {
+	 tinymce.init({
+	  selector: '#short_description',
+	  setup: function(editor) {
+	   editor.on('Change', function(e) {
+		tinyMCE.triggerSave();
+		var sd_data = $('#short_description').val();
+		@this.set('short_description', sd_data);
+	   })
+	  }
+	 });
+
+	 tinymce.init({
+	  selector: '#description',
+	  setup: function(editor) {
+	   editor.on('Change', function(e) {
+		tinyMCE.triggerSave();
+		var d_data = $('#description').val();
+		@this.set('description', d_data);
+	   })
+	  }
+	 });
+
+	 tinymce.init({
+	  selector: '#information',
+	  setup: function(editor) {
+	   editor.on('Change', function(e) {
+		tinyMCE.triggerSave();
+		var d_data = $('#information').val();
+		@this.set('information', d_data);
+	   })
+	  }
+	 });
+
+	});
+   </script>
+@endpush

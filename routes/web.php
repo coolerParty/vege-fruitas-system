@@ -18,6 +18,10 @@ use App\Http\Livewire\admin\AdminProductComponent;
 use App\Http\Livewire\admin\AdminProductAddComponent;
 use App\Http\Livewire\admin\AdminProductEditComponent;
 
+use App\Http\Livewire\admin\AdminBlogComponent;
+use App\Http\Livewire\admin\AdminBlogAddComponent;
+use App\Http\Livewire\admin\AdminBlogEditComponent;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -59,5 +63,9 @@ Route::middleware(['auth:sanctum','verified','authadmin'])->group(function(){
     Route::get('/admin/product',AdminProductComponent::class)->name('admin.product');	
     Route::get('/admin/product/add',AdminProductAddComponent::class)->name('admin.productadd');	
     Route::get('/admin/product/edit/{product_id}',AdminProductEditComponent::class)->name('admin.productedit');	
+
+    Route::get('/admin/blog',AdminBlogComponent::class)->name('admin.blog');	
+    Route::get('/admin/blog/add',AdminBlogAddComponent::class)->name('admin.blogadd');	
+    Route::get('/admin/blog/edit/{blog_id}',AdminBlogEditComponent::class)->name('admin.blogedit');	
 
 });
