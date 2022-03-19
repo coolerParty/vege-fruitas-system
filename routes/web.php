@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Livewire\HomeComponent;
+use App\Http\Livewire\ContactComponent;
 
 use App\Http\Livewire\user\UserChangePasswordComponent;
 
@@ -22,6 +23,7 @@ use App\Http\Livewire\admin\AdminBlogComponent;
 use App\Http\Livewire\admin\AdminBlogAddComponent;
 use App\Http\Livewire\admin\AdminBlogEditComponent;
 
+use App\Http\Livewire\admin\AdminContactComponent;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -43,6 +45,7 @@ use App\Http\Livewire\admin\AdminBlogEditComponent;
 
 // for guest
 Route::get('/',HomeComponent::class)->name('home');
+Route::get('/contact-us',ContactComponent::class)->name('contact.index');
 
 // For User
 Route::middleware(['auth:sanctum','verified'])->group(function(){
@@ -68,4 +71,5 @@ Route::middleware(['auth:sanctum','verified','authadmin'])->group(function(){
     Route::get('/admin/blog/add',AdminBlogAddComponent::class)->name('admin.blogadd');	
     Route::get('/admin/blog/edit/{blog_id}',AdminBlogEditComponent::class)->name('admin.blogedit');	
 
+    Route::get('/admin/contact',AdminContactComponent::class)->name('admin.contact');	
 });

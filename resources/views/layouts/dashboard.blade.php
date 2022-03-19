@@ -22,7 +22,7 @@
 	<link rel="stylesheet" href="{{ asset('assets/admin/css/style.css') }}">
 	<!-- End layout styles -->
 	<link rel="shortcut icon" href="{{ asset('assets/admin/images/favicon.png') }}" />
-
+	<!-- Tiny.cloud text editor -->
 	<script src="https://cdn.tiny.cloud/1/titz4ckhqw932u1vyzq8h8vclq1w1ktdcf51mjftxeebmo3p/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 	@livewireStyles
 </head>
@@ -104,6 +104,14 @@
 							<i class="mdi mdi-account-multiple"></i>
 						</span>
 						<span class="menu-title">Users List</span>
+					</a>
+				</li>
+				<li class="nav-item menu-items">
+					<a class="nav-link" href="{{ route('admin.contact') }}">
+						<span class="menu-icon">
+							<i class="mdi mdi-contact-mail"></i>
+						</span>
+						<span class="menu-title">Contact List</span>
 					</a>
 				</li>
 				<li class="nav-item menu-items">
