@@ -44,6 +44,30 @@ class AdminProductComponent extends Component
                 unlink('storage/product/large'.'/'.$product->image);
             }
         }
+
+        if($product->images)
+        {
+            $images = explode(",",$product->images);
+            foreach($images as $image)
+            {
+                if (!empty($image))
+                {
+                    if (file_exists('storage/product/large'.'/'.$image))  
+                    {
+                        unlink('storage/product/large'.'/'.$image);
+                    }
+                    if (file_exists('storage/product/medium'.'/'.$image))  
+                    {
+                        unlink('storage/product/medium'.'/'.$image);
+                    }
+                    if (file_exists('storage/product/small'.'/'.$image))  
+                    {
+                        unlink('storage/product/small'.'/'.$image);
+                    }
+                }
+            }
+        }
+        
         $product->delete();
         session()->flash('message',$this->name.' has been deleted successfully');
         $this->name = null;

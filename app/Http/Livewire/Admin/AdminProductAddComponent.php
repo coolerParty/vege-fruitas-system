@@ -50,10 +50,11 @@ class AdminProductAddComponent extends Component
             'regular_price'     => ['required','numeric'],
             'sale_price'        => ['numeric'],
             'stock_status'      => ['required'],
+            'featured'          => ['required'],
             'quantity'          => ['required','numeric'],
             'weight'            => ['required','numeric'],
             'image'             => ['required','image','max:2054'],
-            'images.*'          => ['image','max:2054'],   // 2MB Max
+            'images.*'          => ['image','max:2054'],                       // 2MB Max
             'category_id'       => ['required'],
         ]);
     }
@@ -69,10 +70,11 @@ class AdminProductAddComponent extends Component
                 'regular_price'     => ['required','numeric'],
                 'sale_price'        => ['numeric'],
                 'stock_status'      => ['required'],
+                'featured'          => ['required'],
                 'quantity'          => ['required','numeric'],
                 'weight'            => ['required','numeric'],
                 'image'             => ['required','image','max:2054'],
-                'images.*'          => ['image','max:2054'],   // 2MB Max
+                'images.*'          => ['image','max:2054'],                       // 2MB Max
                 'category_id'       => ['required'],
         ]);
 
@@ -85,6 +87,7 @@ class AdminProductAddComponent extends Component
         $product->regular_price     = $this->regular_price;
         $product->sale_price        = $this->sale_price;
         $product->stock_status      = $this->stock_status;
+        $product->featured          = $this->featured;
         $product->quantity          = $this->quantity;
         $product->weight            = $this->weight;
         $product->category_id       = $this->category_id;
@@ -93,8 +96,8 @@ class AdminProductAddComponent extends Component
         {
             $imagename      = 'ci'.Carbon::now()->timestamp. '.' . $this->image->extension();
             $pathProductSmall  = storage_path().'/app/public/product/small/';
-            $pathProductMedium  = storage_path().'/app/public/product/medium/';
-            $pathProductLarge   = storage_path().'/app/public/product/large/';
+            $pathProductMedium = storage_path().'/app/public/product/medium/';
+            $pathProductLarge  = storage_path().'/app/public/product/large/';
             $thumbnailImage = Image::make($this->image);
             $thumbnailImage->fit(336, 348);
             $thumbnailImage->save($pathProductLarge.$imagename);
@@ -112,12 +115,18 @@ class AdminProductAddComponent extends Component
             {                
                 $imgName = Carbon::now()->timestamp. $key. '.' . $image->extension();
                 // $image->storeAs('products',$imgName);
-                $imagePath = storage_path().'/app/public/product/large/';
+                $pathProductsSmall  = storage_path().'/app/public/product/small/';
+                $pathProductsMedium = storage_path().'/app/public/product/medium/';
+                $pathProductsLarge  = storage_path().'/app/public/product/large/';
                 $postImage = Image::make($image);
                 
                 // resize the image to a width of 860 and constrain aspect ratio (auto height)
                 $postImage->fit(336, 348);
-                $postImage->save($imagePath.$imgName);
+                $postImage->save($pathProductsLarge.$imgName);
+                $postImage->fit(270, 270);
+                $postImage->save($pathProductsMedium.$imgName);
+                $postImage->fit(110, 110);
+                $postImage->save($pathProductsSmall.$imgName);
                 
                 if(empty($imagesname))
                 {

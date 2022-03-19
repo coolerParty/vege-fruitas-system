@@ -90,6 +90,7 @@ class AdminProductEditComponent extends Component
             'regular_price'     => ['required','numeric'],
             'sale_price'        => ['numeric'],
             'stock_status'      => ['required'],
+            'featured'          => ['required'],
             'quantity'          => ['required','numeric'],
             'weight'            => ['required','numeric'],
             'category_id'       => ['required'],
@@ -120,6 +121,7 @@ class AdminProductEditComponent extends Component
             'regular_price'     => ['required','numeric'],
             'sale_price'        => ['numeric'],
             'stock_status'      => ['required'],
+            'featured'          => ['required'],
             'quantity'          => ['required','numeric'],
             'weight'            => ['required','numeric'],
             'category_id'       => ['required'],
@@ -190,9 +192,20 @@ class AdminProductEditComponent extends Component
                 $images = explode(",",$product->images);
                 foreach($images as $image)
                 {
-                    if (!empty($image) && file_exists('storage/product/large'.'/'.$image))  
+                    if (!empty($image))
                     {
-                        unlink('storage/product/large'.'/'.$image);
+                        if (file_exists('storage/product/large'.'/'.$image))  
+                        {
+                            unlink('storage/product/large'.'/'.$image);
+                        }
+                        if (file_exists('storage/product/medium'.'/'.$image))  
+                        {
+                            unlink('storage/product/medium'.'/'.$image);
+                        }
+                        if (file_exists('storage/product/small'.'/'.$image))  
+                        {
+                            unlink('storage/product/small'.'/'.$image);
+                        }
                     }
                 }
             }
@@ -201,12 +214,18 @@ class AdminProductEditComponent extends Component
             foreach($this->newimages as $key=>$image)
             {
                 $imgName   = Carbon::now()->timestamp . $key . '.' . $image->extension();
-                $imagePath = storage_path().'/app/public/product/large/';
+                $imagePathSmall = storage_path().'/app/public/product/small/';
+                $imagePathMedium = storage_path().'/app/public/product/medium/';
+                $imagePathLarge = storage_path().'/app/public/product/large/';
                 $productImage = Image::make($image);
                 
                 // resize the image to a width of 860 and constrain aspect ratio (auto height)
                 $productImage->fit(336, 348);
-                $productImage->save($imagePath.$imgName);
+                $productImage->save($imagePathLarge.$imgName);
+                $productImage->fit(270, 270);
+                $productImage->save($imagePathMedium.$imgName);
+                $productImage->fit(110, 110);
+                $productImage->save($imagePathLarge.$imgName);
 
                 if(empty($imagesname))
                 {
