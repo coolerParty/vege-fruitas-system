@@ -27,7 +27,7 @@
 
 		<div class="hero__search">
 			<div class="hero__search__form shadow">
-				<form action="{{ route('search.product') }}">
+				<form action="{{ route('product.search') }}">
 					{{-- <div class="hero__search__categories"> --}}
 					{{-- All Categories --}}
 					{{-- <select class="border-0 m-1" name="sdfsd" id="" wire:ignore>

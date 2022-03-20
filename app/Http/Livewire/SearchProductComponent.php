@@ -36,7 +36,7 @@ class SearchProductComponent extends Component
         if(!empty($this->search))
         {
             $products = Product::where('name','like','%'.$this->search.'%')->select('id','name','slug','regular_price','image')->where('stock_status',1)->orderBy('created_at','DESC')->paginate($this->PAGE_NUMBER_LIMIT);
-            $products->withPath(route('search.product').'?search='.$this->search);
+            $products->withPath(route('product.search').'?search='.$this->search);
         }
         else
         {
