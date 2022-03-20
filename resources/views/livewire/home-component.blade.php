@@ -1,15 +1,6 @@
 <div>
     @section('title', 'Vege Fruitas Online')
 
-    {{-- <div class="hero__item set-bg col-lg-9 col-md-9 col-sm-9" style="margin: 5px auto 20px auto;" data-setbg="{{ asset('assets/img/hero/banner.jpg') }}">
-        <div class="hero__text">
-            <span>FRUIT FRESH</span>
-            <h2>Vegetable <br />100% Organic</h2>
-            <p>Free Pickup and Delivery Available</p>
-            <a href="#" class="primary-btn">SHOP NOW</a>
-        </div>
-    </div> --}}
-
 	<!-- Categories Section Begin -->
 	<section class="categories">
 		<div class="container">
@@ -94,10 +85,12 @@
 	<section class="latest-product spad">
 		<div class="container">
 			<div class="row">
+
 				<div class="col-lg-4 col-md-6">
 					<div class="latest-product__text">
 						<h4>Latest Products</h4>
 						<div class="latest-product__slider owl-carousel">
+
 							<div class="latest-prdouct__slider__item">
 								@foreach ($l_top_products as $l_top_product)
 									<a href="#" class="latest-product__item">
@@ -111,6 +104,7 @@
 									</a>
 								@endforeach
 							</div>
+
 							<div class="latest-prdouct__slider__item">
 								@foreach ($l_buttom_products as $l_buttom_product)
 									<a href="#" class="latest-product__item">
@@ -124,13 +118,16 @@
 									</a>
 								@endforeach
 							</div>
+
 						</div>
 					</div>
 				</div>
+
 				<div class="col-lg-4 col-md-6">
 					<div class="latest-product__text">
 						<h4>Top Rated Products</h4>
 						<div class="latest-product__slider owl-carousel">
+
 							<div class="latest-prdouct__slider__item">
 								<a href="#" class="latest-product__item">
 									<div class="latest-product__item__pic">
@@ -160,7 +157,9 @@
 									</div>
 								</a>
 							</div>
+
 							<div class="latest-prdouct__slider__item">
+
 								<a href="#" class="latest-product__item">
 									<div class="latest-product__item__pic">
 										<img src="{{ asset('assets/img/latest-product/lp-1.jpg') }}" alt="">
@@ -170,6 +169,7 @@
 										<span>$30.00</span>
 									</div>
 								</a>
+
 								<a href="#" class="latest-product__item">
 									<div class="latest-product__item__pic">
 										<img src="{{ asset('assets/img/latest-product/lp-2.jpg') }}" alt="">
@@ -179,6 +179,7 @@
 										<span>$30.00</span>
 									</div>
 								</a>
+
 								<a href="#" class="latest-product__item">
 									<div class="latest-product__item__pic">
 										<img src="{{ asset('assets/img/latest-product/lp-3.jpg') }}" alt="">
@@ -188,15 +189,20 @@
 										<span>$30.00</span>
 									</div>
 								</a>
+
 							</div>
+
 						</div>
 					</div>
 				</div>
+
 				<div class="col-lg-4 col-md-6">
 					<div class="latest-product__text">
 						<h4>Review Products</h4>
 						<div class="latest-product__slider owl-carousel">
+
 							<div class="latest-prdouct__slider__item">
+
 								<a href="#" class="latest-product__item">
 									<div class="latest-product__item__pic">
 										<img src="{{ asset('assets/img/latest-product/lp-1.jpg') }}" alt="">
@@ -206,6 +212,7 @@
 										<span>$30.00</span>
 									</div>
 								</a>
+
 								<a href="#" class="latest-product__item">
 									<div class="latest-product__item__pic">
 										<img src="{{ asset('assets/img/latest-product/lp-2.jpg') }}" alt="">
@@ -215,6 +222,7 @@
 										<span>$30.00</span>
 									</div>
 								</a>
+
 								<a href="#" class="latest-product__item">
 									<div class="latest-product__item__pic">
 										<img src="{{ asset('assets/img/latest-product/lp-3.jpg') }}" alt="">
@@ -224,8 +232,11 @@
 										<span>$30.00</span>
 									</div>
 								</a>
+
 							</div>
+
 							<div class="latest-prdouct__slider__item">
+
 								<a href="#" class="latest-product__item">
 									<div class="latest-product__item__pic">
 										<img src="{{ asset('assets/img/latest-product/lp-1.jpg') }}" alt="">
@@ -235,6 +246,7 @@
 										<span>$30.00</span>
 									</div>
 								</a>
+
 								<a href="#" class="latest-product__item">
 									<div class="latest-product__item__pic">
 										<img src="{{ asset('assets/img/latest-product/lp-2.jpg') }}" alt="">
@@ -244,6 +256,7 @@
 										<span>$30.00</span>
 									</div>
 								</a>
+
 								<a href="#" class="latest-product__item">
 									<div class="latest-product__item__pic">
 										<img src="{{ asset('assets/img/latest-product/lp-3.jpg') }}" alt="">
@@ -253,7 +266,9 @@
 										<span>$30.00</span>
 									</div>
 								</a>
+
 							</div>
+
 						</div>
 					</div>
 				</div>
@@ -265,6 +280,7 @@
 	<!-- Blog Section Begin -->
 	<section class="from-blog spad">
 		<div class="container">
+
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="section-title from-blog__title">
@@ -272,13 +288,16 @@
 					</div>
 				</div>
 			</div>
+
 			<div class="row">
 				@foreach ($blogs as $blog)
 					<div class="col-lg-4 col-md-4 col-sm-6">
 						<div class="blog__item">
+
 							<div class="blog__item__pic">
 								<img src="{{ asset('storage/blog/medium') }}/{{ $blog->image }}" alt="">
 							</div>
+
 							<div class="blog__item__text">
 								<ul>
 									<li><i class="fa fa-calendar-o"></i> {{ \Carbon\Carbon::parse($blog->created_at)->format('F d, Y') }}</li>
@@ -287,10 +306,12 @@
 								<h5><a href="#">{{ $blog->name }}</a></h5>
 								<p>{{ $blog->short_description }}</p>
 							</div>
+
 						</div>
 					</div>
 				@endforeach
 			</div>
+
 		</div>
 	</section>
 	<!-- Blog Section End -->

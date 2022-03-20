@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\HomeComponent;
 use App\Http\Livewire\ContactComponent;
 use App\Http\Livewire\ShopComponent;
+use App\Http\Livewire\SearchProductComponent;
 
 use App\Http\Livewire\user\UserChangePasswordComponent;
 
@@ -48,6 +49,7 @@ use App\Http\Livewire\admin\AdminContactComponent;
 Route::get('/',HomeComponent::class)->name('home');
 Route::get('/contact-us',ContactComponent::class)->name('contact.index');
 Route::get('/shop',ShopComponent::class)->name('shop.index');
+Route::get('/search-product',SearchProductComponent::class)->name('search.product');
 
 // For User
 Route::middleware(['auth:sanctum','verified'])->group(function(){

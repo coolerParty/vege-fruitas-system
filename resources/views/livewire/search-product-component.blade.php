@@ -1,15 +1,16 @@
 <div>
-	@section('title', 'Shop')
+	@section('title', 'Shop / Search Product')
 	<!-- Breadcrumb Section Begin -->
 	<section class="breadcrumb-section set-bg" data-setbg="{{ asset('assets/img/breadcrumb.jpg') }}">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12 text-center">
 					<div class="breadcrumb__text">
-						<h2>Organi Shop</h2>
+						<h2>Search: {{ $search }}</h2>
 						<div class="breadcrumb__option">
 							<a href="{{ route('home') }}">Home</a>
-							<span>Shop</span>
+							<a href="{{ route('shop.index') }}">Shop</a>
+							<span>Search Product</span>
 						</div>
 					</div>
 				</div>
@@ -150,38 +151,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-9 col-md-7">
-					<div class="product__discount">
-						<div class="section-title product__discount__title">
-							<h2>Sale Off</h2>
-						</div>
-						<div class="row">
-							<div class="product__discount__slider owl-carousel">
-								@foreach ($sale_products as $sale_product)
-									<div class="col-lg-4">
-										<div class="product__discount__item">
-											<div class="product__discount__item__pic set-bg"
-												data-setbg="{{ asset('storage/product/medium') }}/{{ $sale_product->image }}">
-												<div class="product__discount__percent">
-													-{{ number_format(100 - ($sale_product->sale_price / $sale_product->regular_price) * 100) }}%</div>
-												<ul class="product__item__pic__hover">
-													<li><a href="#"><i class="fa fa-heart"></i></a></li>
-													<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-													<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-												</ul>
-											</div>
-											<div class="product__discount__item__text">
-												<span>{{ $sale_product->category->name }}</span>
-												<h5><a href="#">{{ $sale_product->name }}</a></h5>
-												<div class="product__item__price">${{ number_format($sale_product->sale_price, 2) }}
-													<span>${{ number_format($sale_product->regular_price, 2) }}</span></div>
-											</div>
-										</div>
-									</div>
-								@endforeach
-							</div>
-						</div>
-					</div>
+				<div class="col-lg-9 col-md-7">					
 					<div class="filter__item">
 						<div class="row">
 							<div class="col-lg-4 col-md-5">
@@ -189,13 +159,14 @@
 									<span>Sort By</span>
 									<select>
 										<option value="0">Default</option>
-										<option value="0">Default</option>
+										<option value="1">Name ASC</option>
+										<option value="2">Name Desc</option>
 									</select>
 								</div>
 							</div>
 							<div class="col-lg-4 col-md-4">
-								<div class="filter__found">                                     
-									<h6><span>{!! $products->total() !!}</span> Total Products</h6>
+								<div class="filter__found">
+									<h6><span>{!! $products->total() !!}</span> Total Products Found</h6>
 								</div>
 							</div>
 							<div class="col-lg-4 col-md-3">
@@ -227,7 +198,7 @@
 						@endforeach
 					</div>
 					<!-- ======= Pagination Start ======= -->
-					<div class="row p-2" style="width: 100%;">
+					<div class="row p-2 mb-4" style="width: 100%;">
 						<div class="col-md-6 col-sm-6 pt-2">
 							<div class="float-left" style="width: 100%;">
 								{!! $products->onEachSide(2)->links() !!}
@@ -240,6 +211,40 @@
 						</div>
 					</div>
 					<!-- ======= Pagination End ======= -->
+
+                    <div class="product__discount">
+						<div class="section-title product__discount__title">
+							<h2>Sale Off</h2>
+						</div>
+						<div class="row">
+							<div class="product__discount__slider owl-carousel">
+								@foreach ($sale_products as $sale_product)
+									<div class="col-lg-4">
+										<div class="product__discount__item">
+											<div class="product__discount__item__pic set-bg"
+												data-setbg="{{ asset('storage/product/medium') }}/{{ $sale_product->image }}">
+												<div class="product__discount__percent">
+													-{{ number_format(100 - ($sale_product->sale_price / $sale_product->regular_price) * 100) }}%</div>
+												<ul class="product__item__pic__hover">
+													<li><a href="#"><i class="fa fa-heart"></i></a></li>
+													<li><a href="#"><i class="fa fa-retweet"></i></a></li>
+													<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+												</ul>
+											</div>
+											<div class="product__discount__item__text">
+												<span>{{ $sale_product->category->name }}</span>
+												<h5><a href="#">{{ $sale_product->name }}</a></h5>
+												<div class="product__item__price">${{ number_format($sale_product->sale_price, 2) }}
+													<span>${{ number_format($sale_product->regular_price, 2) }}</span>
+												</div>
+											</div>
+										</div>
+									</div>
+								@endforeach
+							</div>
+						</div>
+					</div>
+
 				</div>
 			</div>
 		</div>

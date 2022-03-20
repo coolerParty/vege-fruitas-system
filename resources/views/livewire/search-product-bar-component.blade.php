@@ -6,9 +6,9 @@
 				<span>All departments</span>
 			</div>
 			<ul>
-                @foreach ($categories as $category)
-                    <li><a href="#">{{ $category->name }}</a></li>
-                @endforeach
+				@foreach ($categories as $category)
+					<li><a href="#">{{ $category->name }}</a></li>
+				@endforeach
 				{{-- <li><a href="#">Fresh Meat</a></li>
 				<li><a href="#">Vegetables</a></li>
 				<li><a href="#">Fruit & Nut Gifts</a></li>
@@ -27,7 +27,7 @@
 
 		<div class="hero__search">
 			<div class="hero__search__form shadow">
-				<form action="#">
+				<form action="{{ route('search.product') }}">
 					{{-- <div class="hero__search__categories"> --}}
 					{{-- All Categories --}}
 					{{-- <select class="border-0 m-1" name="sdfsd" id="" wire:ignore>
@@ -38,7 +38,7 @@
 					{{-- <span class="arrow_carrot-down"></span> --}}
 
 					{{-- </div> --}}
-					<input type="text" placeholder="What do yo u need?">
+					<input type="text" placeholder="Search product" id="search" name="search" aria-label="Search product" value="{{ $search }}">
 					<button type="submit" class="site-btn">SEARCH</button>
 				</form>
 			</div>
@@ -60,7 +60,7 @@
 					<span>FRUIT FRESH</span>
 					<h2>Vegetable <br />100% Organic</h2>
 					<p>Free Pickup and Delivery Available</p>
-					<a href="#" class="primary-btn">SHOP NOW</a>
+					<a href="{{ route('shop.index') }}" class="primary-btn">SHOP NOW</a>
 				</div>
 			</div>
 		@endif
