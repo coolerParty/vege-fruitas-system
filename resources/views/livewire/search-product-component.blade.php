@@ -1,5 +1,5 @@
 <div>
-	@section('title', 'Shop / Search Product')
+	@section('title', 'Shop / Search : ' . $search )
 	<!-- Breadcrumb Section Begin -->
 	<section class="breadcrumb-section set-bg" data-setbg="{{ asset('assets/img/breadcrumb.jpg') }}">
 		<div class="container">
@@ -10,7 +10,7 @@
 						<div class="breadcrumb__option">
 							<a href="{{ route('home') }}">Home</a>
 							<a href="{{ route('shop.index') }}">Shop</a>
-							<span>Search Product</span>
+							<span>Search : {{ $search }}</span>
 						</div>
 					</div>
 				</div>
