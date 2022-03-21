@@ -30,6 +30,8 @@
 								src="{{ asset('storage/product/large') }}/{{ $product->image }}" alt="">
 						</div>
 						<div class="product__details__pic__slider owl-carousel">
+							<img data-imgbigurl="{{ asset('storage/product/large') }}/{{ $product->image }}"
+									src="{{ asset('storage/product/small') }}/{{ $product->image  }}" alt="">
 							@foreach (explode(',', $product->images) as $productimage)
 								<img data-imgbigurl="{{ asset('storage/product/large') }}/{{ $productimage }}"
 									src="{{ asset('storage/product/small') }}/{{ $productimage }}" alt="">
@@ -58,8 +60,17 @@
 						{!! $product->short_description !!}
 						<div class="product__details__quantity">
 							<div class="quantity">
-								<div class="pro-qty">
-									<input type="text" value="1">
+								<div class="pro-qty1">
+									<div class="input-group mb-3">
+										<div class="input-group-prepend">
+											<button class="btn btn-success" type="button" wire:click.prevent="decreaseQuantity">-</button>
+										</div>
+										<input type="text" class="form-control text-center" style="max-width: 5rem;" value="1" data-max="120" pattern="[0-9]*"
+											wire:model="qty" aria-describedby="Qty">
+										<div class="input-group-prepend">
+											<button class="btn btn-success" type="button" wire:click.prevent="increaseQuantity">+</button>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -150,7 +161,9 @@
 								</ul>
 							</div>
 							<div class="product__item__text">
-								<h6><a href="{{ route('product.details',['product_id'=>$related_product->id,'slug'=>$related_product->slug]) }}">{{ $related_product->name }}</a></h6>
+								<h6><a
+										href="{{ route('product.details', ['product_id' => $related_product->id, 'slug' => $related_product->slug]) }}">{{ $related_product->name }}</a>
+								</h6>
 								<h5>$
 									@if ($related_product->sale_price != null && $related_product->sale_price > 0)
 										{{ number_format($related_product->sale_price, 2) }}

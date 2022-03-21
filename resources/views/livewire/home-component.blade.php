@@ -51,7 +51,7 @@
 								</ul>
 							</div>
 							<div class="featured__item__text">
-								<h6><a href="#">{{ $featured_product->name }}</a></h6>
+								<h6><a href="{{ route('product.details',['product_id'=>$featured_product->id,'slug'=>$featured_product->slug]) }}">{{ $featured_product->name }}</a></h6>
 								<h5>${{ number_format($featured_product->regular_price, 2) }}</h5>
 							</div>
 						</div>
@@ -93,7 +93,7 @@
 
 							<div class="latest-prdouct__slider__item">
 								@foreach ($l_top_products as $l_top_product)
-									<a href="#" class="latest-product__item">
+									<a href="{{ route('product.details',['product_id'=>$l_top_product->id,'slug'=>$l_top_product->slug]) }}" class="latest-product__item">
 										<div class="latest-product__item__pic">
 											<img src="{{ asset('storage/product/small') }}/{{ $l_top_product->image }}" alt="">
 										</div>
@@ -107,7 +107,7 @@
 
 							<div class="latest-prdouct__slider__item">
 								@foreach ($l_buttom_products as $l_buttom_product)
-									<a href="#" class="latest-product__item">
+									<a href="{{ route('product.details',['product_id'=>$l_buttom_product->id,'slug'=>$l_buttom_product->slug]) }}" class="latest-product__item">
 										<div class="latest-product__item__pic">
 											<img src="{{ asset('storage/product/small') }}/{{ $l_buttom_product->image }}" alt="">
 										</div>
