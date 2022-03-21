@@ -8,6 +8,7 @@ use App\Http\Livewire\ShopComponent;
 use App\Http\Livewire\SearchProductComponent;
 use App\Http\Livewire\ProductDetailsComponent;
 use App\Http\Livewire\CartComponent;
+use App\Http\Livewire\WishlistComponent;
 
 use App\Http\Livewire\user\UserChangePasswordComponent;
 
@@ -54,6 +55,7 @@ Route::get('/shop',ShopComponent::class)->name('shop.index');
 Route::get('/search-product',SearchProductComponent::class)->name('product.search');
 Route::get('/product/{product_id}/{slug}',ProductDetailsComponent::class)->name('product.details');
 Route::get('/cart',CartComponent::class)->name('cart.index');
+Route::get('/wishlist',WishlistComponent::class)->name('wishlist.index');
 
 // For User
 Route::middleware(['auth:sanctum','verified'])->group(function(){

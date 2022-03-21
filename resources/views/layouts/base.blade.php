@@ -189,13 +189,9 @@
 					</div>
 					<div class="col-lg-3">
 						<div class="header__cart">
-							<ul>
-								<li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-								<li><a href="{{ route('cart.index') }}"><i class="fa fa-shopping-bag"></i>
-										@if (Cart::instance('cart')->count() > 0)
-											<span>{{ Cart::instance('cart')->count() }}</span>
-										@endif
-									</a></li>
+							<ul>								
+								<li>@livewire('wishlist-count-component')</li>
+								<li>@livewire('cart-count-component')</li>
 							</ul>
 							<div class="header__cart__price">item: <span>$150.00</span></div>
 						</div>

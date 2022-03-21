@@ -1,4 +1,5 @@
 <div>
+    @section('title', 'Shopping Cart')
 	<!-- Breadcrumb Section Begin -->
 	<section class="breadcrumb-section set-bg" data-setbg="{{ asset('assets/img/breadcrumb.jpg') }}">
 		<div class="container">

@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Pagination\Paginator;
+use Cart;
 
 class SearchProductComponent extends Component
 {
@@ -26,7 +27,31 @@ class SearchProductComponent extends Component
     public function store($product_id, $product_name, $product_price)
     {
         Cart::instance('cart')->add($product_id, $product_name, 1, $product_price)->associate('App\Models\Product'); 
-        session()->flash('cart_message','"'.$product_name . '" has been added to cart!');
+        $this->emitTo('cart-count-component','refreshComponent'); // refresh cart count display top right menu
+        session()->flash('cart_message','Product "'.$product_name . '" has been added to cart!');
+    }
+
+    public function addToWishlist($product_id, $product_name, $product_price)
+    {
+        if(Cart::instance('wishlist')->content()->pluck('id')->contains($product_id))
+        {
+            foreach(Cart::instance('wishlist')->content() as $witem)
+            {
+                if($witem->id == $product_id)
+                {
+                    Cart::instance('wishlist')->remove($witem->rowId);
+                    $this->emitTo('wishlist-count-component','refreshComponent'); // refresh wishlist count display top right menu
+                    session()->flash('cart_message','Wishlist has been removed!');
+                }
+            }
+        }
+        else
+        {
+            Cart::instance('wishlist')->add($product_id, $product_name, 1, $product_price)->associate('App\Models\Product');
+            $this->emitTo('wishlist-count-component','refreshComponent'); // refresh wishlist count display top right menu
+            session()->flash('cart_message','Product "'.$product_name . '" has been added to wishlist!'); 
+        }
+        
     }
 
     public function render()
@@ -50,15 +75,16 @@ class SearchProductComponent extends Component
             
         }
 
-
         $categories = Category::select('id','name','slug')->where('status',1)->where('type',1)->orderby('name','ASC')->get();
+        $witems = Cart::instance('wishlist')->content()->pluck('id');
         return view('livewire.search-product-component',
                         [
-                            'products'=>$products,
-                            'categories'=>$categories,
-                            'l_top_products'=>$l_top_products,
-                            'l_buttom_products'=>$l_buttom_products,
-                            'sale_products'=>$sale_products
+                            'products'          => $products,
+                            'categories'        => $categories,
+                            'l_top_products'    => $l_top_products,
+                            'l_buttom_products' => $l_buttom_products,
+                            'sale_products'     => $sale_products,
+                            'witems'            => $witems,
                         ]
                     )->layout('layouts.base');
     }
