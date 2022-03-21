@@ -63,12 +63,12 @@
 								<div class="pro-qty1">
 									<div class="input-group mb-3">
 										<div class="input-group-prepend">
-											<button class="btn btn-success" type="button" wire:click.prevent="decreaseQuantity">-</button>
+											<button class="btn btn-outline-secondary" type="button" wire:click.prevent="decreaseQuantity">-</button>
 										</div>
 										<input type="text" class="form-control text-center" style="max-width: 5rem;" value="1" data-max="120" pattern="[0-9]*"
 											wire:model="qty" aria-describedby="Qty">
 										<div class="input-group-prepend">
-											<button class="btn btn-success" type="button" wire:click.prevent="increaseQuantity">+</button>
+											<button class="btn btn-outline-secondary" type="button" wire:click.prevent="increaseQuantity">+</button>
 										</div>
 									</div>
 								</div>
