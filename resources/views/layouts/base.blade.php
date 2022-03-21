@@ -182,7 +182,8 @@
 									</ul>
 								</li>
 								<li><a href="./blog.html">Blog</a></li>
-								<li @if (url()->current() == route('contact.index')) class="active" @endif><a href="{{ route('contact.index') }}">Contact</a></li>
+								<li @if (url()->current() == route('contact.index')) class="active" @endif><a href="{{ route('contact.index') }}">Contact</a>
+								</li>
 							</ul>
 						</nav>
 					</div>
@@ -190,7 +191,11 @@
 						<div class="header__cart">
 							<ul>
 								<li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-								<li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+								<li><a href="{{ route('cart.index') }}"><i class="fa fa-shopping-bag"></i>
+										@if (Cart::instance('cart')->count() > 0)
+											<span>{{ Cart::instance('cart')->count() }}</span>
+										@endif
+									</a></li>
 							</ul>
 							<div class="header__cart__price">item: <span>$150.00</span></div>
 						</div>
@@ -205,11 +210,11 @@
 
 		<!-- Hero Section Begin -->
 		<section class="hero @if (url()->current() != route('home')) hero-normal @endif">
-		{{-- <section class="hero @if (url()->current() != route('home')) hero-normal @endif hero-normal"> --}}
-			<div class="container">		
+			{{-- <section class="hero @if (url()->current() != route('home')) hero-normal @endif hero-normal"> --}}
+			<div class="container">
 
 				@livewire('search-product-bar-component')
-					
+
 			</div>
 		</section>
 		<!-- Hero Section End -->

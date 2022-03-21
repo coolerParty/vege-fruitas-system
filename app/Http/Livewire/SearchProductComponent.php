@@ -23,6 +23,12 @@ class SearchProductComponent extends Component
         $this->fill(request()->only('search'));
     }
 
+    public function store($product_id, $product_name, $product_price)
+    {
+        Cart::instance('cart')->add($product_id, $product_name, 1, $product_price)->associate('App\Models\Product'); 
+        session()->flash('cart_message','"'.$product_name . '" has been added to cart!');
+    }
+
     public function render()
     {
         $latest_products   = Product::select('id','name','slug','image','regular_price','created_at')->orderBy('created_at','DESC')->take(6)->get();

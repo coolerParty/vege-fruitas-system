@@ -74,7 +74,7 @@
 								</div>
 							</div>
 						</div>
-						<a href="#" class="primary-btn">ADD TO CARD</a>
+						<a href="#" class="primary-btn" wire:click.prevent="addToCart({{ $product->id }}, '{{ $product->name }}',{{ $product->regular_price }})">ADD TO CART</a>
 						<a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
 						<ul>
 							<li><b>Availability</b>
@@ -157,7 +157,7 @@
 								<ul class="product__item__pic__hover">
 									<li><a href="#"><i class="fa fa-heart"></i></a></li>
 									<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-									<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+									<li><a href="#" wire:click.prevent="store({{ $related_product->id }}, '{{ $related_product->name }}',{{ $related_product->regular_price }})"><i class="fa fa-shopping-cart"></i></a></li>
 								</ul>
 							</div>
 							<div class="product__item__text">

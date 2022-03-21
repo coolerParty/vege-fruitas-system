@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Pagination\Paginator;
+use Cart;	
 
 class ShopComponent extends Component
 {
@@ -14,6 +15,12 @@ class ShopComponent extends Component
     public function boot()
     {
         Paginator::useBootstrap();
+    }
+
+    public function store($product_id, $product_name, $product_price)
+    {
+        Cart::instance('cart')->add($product_id, $product_name, 1, $product_price)->associate('App\Models\Product'); 
+        session()->flash('cart_message','"'.$product_name . '" has been added to cart!');
     }
 
     public function render()

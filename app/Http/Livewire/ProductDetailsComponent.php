@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Product;
+use Cart;
 
 class ProductDetailsComponent extends Component
 {
@@ -29,6 +30,18 @@ class ProductDetailsComponent extends Component
         {
         $this->qty--;
         }
+    }
+
+    public function addToCart($product_id, $product_name, $product_price)
+    {
+        Cart::instance('cart')->add($product_id, $product_name, $this->qty, $product_price)->associate('App\Models\Product'); 
+        session()->flash('cart_message','"'.$product_name . '" has been added to cart!');
+    }
+
+    public function store($product_id, $product_name, $product_price)
+    {
+        Cart::instance('cart')->add($product_id, $product_name, 1, $product_price)->associate('App\Models\Product'); 
+        session()->flash('cart_message','"'.$product_name . '" has been added to cart!');
     }
 
     public function render()

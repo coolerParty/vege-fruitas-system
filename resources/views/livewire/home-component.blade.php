@@ -47,7 +47,8 @@
 								<ul class="featured__item__pic__hover">
 									<li><a href="#"><i class="fa fa-heart"></i></a></li>
 									<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-									<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+									<li><a href="#" wire:click.prevent="store({{ $featured_product->id }}, '{{ $featured_product->name }}',{{ $featured_product->regular_price }})"><i class="fa fa-shopping-cart"></i></a></li>
+									
 								</ul>
 							</div>
 							<div class="featured__item__text">
