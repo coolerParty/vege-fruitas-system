@@ -11,14 +11,19 @@ use Illuminate\Support\Facades\Auth;
 
 class HomeComponent extends Component
 {
+
+
     public function store($product_id, $product_name, $product_price)
     {
         Cart::instance('cart')->add($product_id, $product_name, 1, $product_price)->associate('App\Models\Product'); 
+        $this->emitTo('cart-count-component','refreshComponent'); // refresh cart count display top right menu
         session()->flash('cart_message','Product "'.$product_name . '" has been added to cart!');
     }
 
+
     public function addToWishlist($product_id, $product_name, $product_price)
     {
+
         if(Cart::instance('wishlist')->content()->pluck('id')->contains($product_id))
         {
             foreach(Cart::instance('wishlist')->content() as $witem)
@@ -40,8 +45,10 @@ class HomeComponent extends Component
         
     }
 
+
     public function removeFromWishlist($product_id)
     {
+
         foreach(Cart::instance('wishlist')->content() as $witem)
         {
             if($witem->id == $product_id)
@@ -51,16 +58,19 @@ class HomeComponent extends Component
                 
             }
         }
+
     }
+
 
     public function render()
     {
+
         if(Auth::check())
 		{
 			Cart::instance('cart')->restore(Auth::user()->email); // save cart to database using user email;
 			Cart::instance('wishlist')->restore(Auth::user()->email); // save wishlist to database using user email;
 		}
-        
+
         $featured_products = Product::select('id','name','slug','image','regular_price','category_id')
                             ->where('featured',1)->where('stock_status','instock')->orderby('created_at','DESC')->take(8)->get();
         $feat_cats         = $featured_products->pluck('category_id','category_id')->all();
@@ -76,6 +86,7 @@ class HomeComponent extends Component
         $categories = Category::select('id','name','image','slug')->where('status',1)->where('type',1)->orderby('name','ASC')->get();
         $image_categories = $categories->take(6);
         $witems = Cart::instance('wishlist')->content()->pluck('id');
+
         return view('livewire.home-component',
                 [
                     'categories'=>$categories,
@@ -88,5 +99,8 @@ class HomeComponent extends Component
                     'witems'=>$witems,
                 ]
             )->layout('layouts.base');
+
     }
+
+    
 }

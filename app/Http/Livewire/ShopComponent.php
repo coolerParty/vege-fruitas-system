@@ -11,12 +11,16 @@ use Illuminate\Support\Facades\Auth;
 
 class ShopComponent extends Component
 {
+
+
     public $PAGE_NUMBER_LIMIT = 9;
+
 
     public function boot()
     {
         Paginator::useBootstrap();
     }
+
 
     public function store($product_id, $product_name, $product_price)
     {
@@ -25,8 +29,10 @@ class ShopComponent extends Component
         session()->flash('cart_message','Product "'.$product_name . '" has been added to cart!');
     }
 
+
     public function addToWishlist($product_id, $product_name, $product_price)
     {
+
         if(Cart::instance('wishlist')->content()->pluck('id')->contains($product_id))
         {
             foreach(Cart::instance('wishlist')->content() as $witem)
@@ -48,8 +54,10 @@ class ShopComponent extends Component
         
     }
 
+
     public function render()
     {
+
         if(Auth::check())
 		{
 			Cart::instance('cart')->store(Auth::user()->email); // save cart to database using user email;
@@ -66,6 +74,7 @@ class ShopComponent extends Component
         $products = Product::select('id','name','slug','regular_price','image')->where('stock_status',1)->orderBy('created_at','DESC')->paginate($this->PAGE_NUMBER_LIMIT);
         $categories = Category::select('id','name','slug')->where('status',1)->where('type',1)->orderby('name','ASC')->get();
         $witems = Cart::instance('wishlist')->content()->pluck('id');
+
         return view('livewire.shop-component',
                 [
                     'products'          => $products,
@@ -76,5 +85,8 @@ class ShopComponent extends Component
                     'witems'            => $witems,
                 ]
             )->layout('layouts.base');
+
     }
+
+    
 }

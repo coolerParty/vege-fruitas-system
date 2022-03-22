@@ -7,9 +7,11 @@ use App\Models\Contact;
 
 class ContactComponent extends Component
 {
+
     public $name;
     public $email;
     public $comment;
+
 
     public function updated($fields)
     {
@@ -20,8 +22,10 @@ class ContactComponent extends Component
         ]);   
     }
 
+
     public function sendMessage()
     {
+
         $this->validate([
             'name'    => ['required','string'],
             'email'   => ['required','string','email'],
@@ -34,10 +38,14 @@ class ContactComponent extends Component
         $contact->comment = $this->comment;
         $contact->save();
         session()->flash('message','Thanks, Your message has been sent successfully!.');
+
     }
+
 
     public function render()
     {
         return view('livewire.contact-component')->layout('layouts.base');
     }
+
+    
 }
