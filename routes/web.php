@@ -9,6 +9,7 @@ use App\Http\Livewire\SearchProductComponent;
 use App\Http\Livewire\ProductDetailsComponent;
 use App\Http\Livewire\CartComponent;
 use App\Http\Livewire\WishlistComponent;
+use App\Http\Livewire\CheckoutComponent;
 
 use App\Http\Livewire\user\UserChangePasswordComponent;
 
@@ -29,6 +30,10 @@ use App\Http\Livewire\admin\AdminBlogAddComponent;
 use App\Http\Livewire\admin\AdminBlogEditComponent;
 
 use App\Http\Livewire\admin\AdminContactComponent;
+
+use App\Http\Livewire\admin\AdminCouponComponent;
+use App\Http\Livewire\admin\AdminCouponAddComponent;
+use App\Http\Livewire\admin\AdminCouponEditComponent;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -56,6 +61,7 @@ Route::get('/search-product',SearchProductComponent::class)->name('product.searc
 Route::get('/product/{product_id}/{slug}',ProductDetailsComponent::class)->name('product.details');
 Route::get('/cart',CartComponent::class)->name('cart.index');
 Route::get('/wishlist',WishlistComponent::class)->name('wishlist.index');
+Route::get('/checkout',CheckoutComponent::class)->name('checkout.index');
 
 // For User
 Route::middleware(['auth:sanctum','verified'])->group(function(){
@@ -82,4 +88,9 @@ Route::middleware(['auth:sanctum','verified','authadmin'])->group(function(){
     Route::get('/admin/blog/edit/{blog_id}',AdminBlogEditComponent::class)->name('admin.blogedit');	
 
     Route::get('/admin/contact',AdminContactComponent::class)->name('admin.contact');	
+
+    Route::get('/admin/coupon',AdminCouponComponent::class)->name('admin.coupon');	
+    Route::get('/admin/coupon/add',AdminCouponAddComponent::class)->name('admin.couponadd');	
+    Route::get('/admin/coupon/edit/{coupon_id}',AdminCouponEditComponent::class)->name('admin.couponedit');	
+
 });

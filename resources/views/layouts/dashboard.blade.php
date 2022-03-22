@@ -127,6 +127,7 @@
 							<li class="nav-item"> <a class="nav-link" href="{{ route('admin.category') }}">Category</a></li>
 							<li class="nav-item"> <a class="nav-link" href="{{ route('admin.product') }}">Product</a></li>
 							<li class="nav-item"> <a class="nav-link" href="{{ route('admin.blog') }}">Blog</a></li>
+							<li class="nav-item"> <a class="nav-link" href="{{ route('admin.coupon') }}">Coupon</a></li>
 						</ul>
 					</div>
 				</li>

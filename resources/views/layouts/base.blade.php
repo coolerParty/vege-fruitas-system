@@ -127,6 +127,8 @@
 											<span class="arrow_carrot-down"></span>
 											<ul>
 												<li><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
+												<li><a href="{{ route('cart.index') }}">Cart</a></li>
+												<li><a href="{{ route('wishlist.index') }}">Wishlist</a></li>
 											</ul>
 										</div>
 									@elseif(Auth::user()->utype === 'USR')
@@ -135,6 +137,8 @@
 											<span class="arrow_carrot-down"></span>
 											<ul>
 												<li><a href="#">Dashboard</a></li>
+												<li><a href="{{ route('cart.index') }}">Cart</a></li>
+												<li><a href="{{ route('wishlist.index') }}">Wishlist</a></li>
 												<li><a href="{{ route('user.changepassword') }}">Password</a></li>
 											</ul>
 										</div>
