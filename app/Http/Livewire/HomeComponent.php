@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\Blog;
 use Cart;
+use Illuminate\Support\Facades\Auth;
 
 class HomeComponent extends Component
 {
@@ -54,6 +55,12 @@ class HomeComponent extends Component
 
     public function render()
     {
+        if(Auth::check())
+		{
+			Cart::instance('cart')->restore(Auth::user()->email); // save cart to database using user email;
+			Cart::instance('wishlist')->restore(Auth::user()->email); // save wishlist to database using user email;
+		}
+        
         $featured_products = Product::select('id','name','slug','image','regular_price','category_id')
                             ->where('featured',1)->where('stock_status','instock')->orderby('created_at','DESC')->take(8)->get();
         $feat_cats         = $featured_products->pluck('category_id','category_id')->all();

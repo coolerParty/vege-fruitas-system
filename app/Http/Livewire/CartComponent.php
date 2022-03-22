@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use Cart;
+use Illuminate\Support\Facades\Auth;
 
 class CartComponent extends Component
 {
@@ -38,6 +39,11 @@ class CartComponent extends Component
 
     public function render()
     {
+        if(Auth::check())
+		{
+			Cart::instance('cart')->store(Auth::user()->email); // save cart to database using user email;
+		}
+        
         return view('livewire.cart-component')->layout('layouts.base');
     }
 }

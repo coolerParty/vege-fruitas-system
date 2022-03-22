@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Pagination\Paginator;
 use Cart;	
+use Illuminate\Support\Facades\Auth;
 
 class ShopComponent extends Component
 {
@@ -49,6 +50,12 @@ class ShopComponent extends Component
 
     public function render()
     {
+        if(Auth::check())
+		{
+			Cart::instance('cart')->store(Auth::user()->email); // save cart to database using user email;
+			Cart::instance('wishlist')->store(Auth::user()->email); // save wishlist to database using user email;
+		}
+        
         $latest_products   = Product::select('id','name','slug','image','regular_price','created_at')->orderBy('created_at','DESC')->take(6)->get();
         $l_top_products    = $latest_products->take(3);
         $buttom_products   = $latest_products->sortBy('created_at')->take(3);
