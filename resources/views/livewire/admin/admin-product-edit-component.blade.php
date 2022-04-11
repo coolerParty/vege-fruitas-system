@@ -27,6 +27,15 @@
 								@error('name')
 									<p class="text-danger">{{ $message }}</p>
 								@enderror
+								@error('short_description')
+									<p class="text-danger">{{ $message }}</p>
+								@enderror
+								@error('description')
+									<p class="text-danger">{{ $message }}</p>
+								@enderror
+								@error('information')
+									<p class="text-danger">{{ $message }}</p>
+								@enderror
 							</div>
 							<div class="form-group">
 								<label for="Slug">Slug</label>
@@ -40,25 +49,16 @@
 								<label for="short_description">Short Description</label>
 								<textarea class="form-control bg-secondary text-dark @error('short_description') is-invalid @enderror" id="short_description" rows="8"
          wire:model="short_description"></textarea>
-								@error('short_description')
-									<p class="text-danger">{{ $message }}</p>
-								@enderror
 							</div>
 							<div class="form-group" wire:ignore>
 								<label for="description">Description</label>
 								<textarea class="form-control @error('description') is-invalid @enderror" id="description" rows="8"
          wire:model="description"></textarea>
-								@error('description')
-									<p class="text-danger">{{ $message }}</p>
-								@enderror
 							</div>
 							<div class="form-group" wire:ignore>
 								<label for="information">Information</label>
 								<textarea class="form-control @error('information') is-invalid @enderror" id="information" rows="8"
          wire:model="information"></textarea>
-								@error('information')
-									<p class="text-danger">{{ $message }}</p>
-								@enderror
 							</div>
 							<div class="form-group">
 								<label for="regular_price">Regular Price</label>

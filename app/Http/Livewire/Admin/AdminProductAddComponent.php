@@ -32,6 +32,7 @@ class AdminProductAddComponent extends Component
     {
         $this->stock_status = 'instock';
         $this->featured     = 0;
+        $this->sale_price   = 0;
     }
 
     public function generateSlug()

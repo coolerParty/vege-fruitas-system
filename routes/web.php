@@ -45,13 +45,11 @@ use App\Http\Livewire\admin\AdminCouponEditComponent;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 
-// // Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-// //     return view('dashboard');
-// // })->name('dashboard');
+
+Route::get('/phpinfo', function() {
+    return phpinfo();
+});
 
 // for guest
 Route::get('/',HomeComponent::class)->name('home');

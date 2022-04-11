@@ -38,7 +38,7 @@
 					{{-- <span class="arrow_carrot-down"></span> --}}
 
 					{{-- </div> --}}
-					<input type="text" placeholder="Search product" id="search" name="search" aria-label="Search product" value="{{ $search }}">
+					<input type="search" placeholder="Search product" id="search" name="search" aria-label="Search product" value="{{ $search }}">
 					<button type="submit" class="site-btn">SEARCH</button>
 				</form>
 			</div>
